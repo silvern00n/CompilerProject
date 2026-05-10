@@ -1,0 +1,14 @@
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\bin\Debug\net10.0\CompilerProject.exe
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\bin\Debug\net10.0\CompilerProject.deps.json
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\bin\Debug\net10.0\CompilerProject.runtimeconfig.json
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\bin\Debug\net10.0\CompilerProject.dll
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\bin\Debug\net10.0\CompilerProject.pdb
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\CompilerProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\CompilerProject.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\CompilerProject.AssemblyInfo.cs
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\CompilerProject.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\CompilerProject.dll
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\refint\CompilerProject.dll
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\CompilerProject.pdb
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\CompilerProject.genruntimeconfig.cache
+C:\Users\USER\Desktop\tomer\school\Software Engineering\Programes\CompilerProject\CompilerProject\obj\Debug\net10.0\ref\CompilerProject.dll
