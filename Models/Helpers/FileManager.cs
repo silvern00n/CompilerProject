@@ -43,16 +43,13 @@ namespace CompilerProject.Models.Helpers
         // Otherwise, use the input JS file directory.
         private string BuildOutputPath(string inputFilePath, string outputDirectory)
         {
-            string finalDirectory = outputDirectory;
+            string finalDirectory = outputDirectory;  
 
-            // If the user did not provide an output directory,
-            // use the directory of the input JS file
             if (string.IsNullOrWhiteSpace(finalDirectory))
             {
                 finalDirectory = Path.GetDirectoryName(inputFilePath);
             }
 
-            // If the input file path has no directory, use the current directory
             if (string.IsNullOrWhiteSpace(finalDirectory))
             {
                 finalDirectory = Directory.GetCurrentDirectory();
@@ -64,9 +61,9 @@ namespace CompilerProject.Models.Helpers
                 Directory.CreateDirectory(finalDirectory);
             }
 
-            string fileNameNoExt = Path.GetFileNameWithoutExtension(inputFilePath);
+            string newRustFile = Path.GetFileNameWithoutExtension(inputFilePath);
 
-            return Path.Combine(finalDirectory, fileNameNoExt + ".rs");
+            return Path.Combine(finalDirectory, newRustFile + ".rs");
         }
 
         public string GetOutputPath(string inputFilePath, string outputDirectory)

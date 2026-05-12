@@ -8,7 +8,7 @@ namespace CompilerProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            //Console.WriteLine("Hello, World!");
             CompilerModel model = new CompilerModel();
             CompilerView view = new CompilerView();
             CompilerController controller = new CompilerController(model, view);
@@ -17,3 +17,7 @@ namespace CompilerProject
         }
     }
 }
+
+//1: terminal -> new terminal -> dotnet run
+//2: command + shift + p -> Task: Run Task -> run CompierProject
+

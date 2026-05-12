@@ -1,4 +1,6 @@
-﻿let x = 5;
+﻿// TestFiles/JavaScriptFiles/ErrorTests/error1.js
+
+let x = 5;
 let y = x + z;
 
 if (y > 10) {

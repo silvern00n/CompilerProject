@@ -1,4 +1,7 @@
-﻿let x = 5;
+﻿// TestFiles/JavaScriptFiles/ValidTests/test1.js
+// TestFiles/RustFiles
+
+let x = 5;
 const y = 10;
 let z = x + y;
 

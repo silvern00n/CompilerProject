@@ -90,6 +90,11 @@ namespace CompilerProject.Models.Phases
                 }
             }
 
+            if (current.Type == TokenType.Identifier && PeekValue(1) == "=")
+            {
+                return ParseAssignmentStatement();
+            }
+
             return ParseExpressionStatement();
         }
 
@@ -118,6 +123,32 @@ namespace CompilerProject.Models.Phases
                 {
                     node.AddChild(value);
                 }
+            }
+
+            Expect(";", "SYN002");
+
+            return node;
+        }
+
+        // Parses assignment statement: name = value;
+        private ASTNode ParseAssignmentStatement()
+        {
+            ASTNode node = new ASTNode(ASTNodeType.Assignment);
+
+            Token name = Expect(TokenType.Identifier, "SYN003");
+
+            if (name != null)
+            {
+                node.AddChild(new ASTNode(ASTNodeType.Identifier, name.Value));
+            }
+
+            Expect("=", "SYN003");
+
+            ASTNode value = ParseExpression();
+
+            if (value != null)
+            {
+                node.AddChild(value);
             }
 
             Expect(";", "SYN002");
@@ -455,7 +486,7 @@ namespace CompilerProject.Models.Phases
         // Parses expression
         private ASTNode ParseExpression()
         {
-            return ParseComparison();
+            return ParseAssignmentExpression();
         }
 
         private ASTNode ParseComparison()
@@ -477,6 +508,36 @@ namespace CompilerProject.Models.Phases
             }
 
             return left;
+        }
+
+        private ASTNode ParseAssignmentExpression()
+        {
+            if (CurrentToken() != null &&
+                CurrentToken().Type == TokenType.Identifier &&
+                PeekValue(1) == "=")
+            {
+                ASTNode node = new ASTNode(ASTNodeType.Assignment);
+
+                Token name = Expect(TokenType.Identifier, "SYN003");
+
+                if (name != null)
+                {
+                    node.AddChild(new ASTNode(ASTNodeType.Identifier, name.Value));
+                }
+
+                Expect("=", "SYN003");
+
+                ASTNode value = ParseExpression();
+
+                if (value != null)
+                {
+                    node.AddChild(value);
+                }
+
+                return node;
+            }
+
+            return ParseComparison();
         }
 
         private ASTNode ParseAddition()
@@ -594,6 +655,18 @@ namespace CompilerProject.Models.Phases
             }
 
             return null;
+        }
+
+        private string PeekValue(int offset)
+        {
+            int index = _current + offset;
+
+            if (index < _tokens.Count)
+            {
+                return _tokens[index].Value;
+            }
+
+            return "";
         }
 
         private Token Consume()

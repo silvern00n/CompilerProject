@@ -49,6 +49,9 @@ namespace CompilerProject.Models.Phases
                 case ASTNodeType.VariableDeclaration:
                     return GenerateVariableDeclaration(node);
 
+                case ASTNodeType.Assignment:
+                    return GenerateAssignment(node);
+
                 case ASTNodeType.IfStatement:
                     return GenerateIfStatement(node);
 
@@ -148,6 +151,26 @@ namespace CompilerProject.Models.Phases
             return line;
         }
 
+        // Translates JS assignment into Rust assignment
+        private string GenerateAssignment(ASTNode node)
+        {
+            return Indent() + GenerateAssignmentExpression(node) + ";\n";
+        }
+
+        private string GenerateAssignmentExpression(ASTNode node)
+        {
+            if (node.Children.Count < 2)
+            {
+                AddGenerationError("GEN001", "Invalid assignment node");
+                return "";
+            }
+
+            string name = node.Children[0].Value;
+            string value = TreeTraversal(node.Children[1]);
+
+            return Indent() + $"{name} = {value};\n";
+        }
+
         // Translates if statement
         private string GenerateIfStatement(ASTNode node)
         {
@@ -209,8 +232,10 @@ namespace CompilerProject.Models.Phases
 
             string init = TreeTraversal(node.Children[0]).Trim();
             string condition = TreeTraversal(node.Children[1]).Trim();
-            string step = TreeTraversal(node.Children[2]).Trim();
-            string body = TreeTraversal(node.Children[3]);
+            string step = node.Children[2].NodeType == ASTNodeType.Assignment
+                ? GenerateAssignmentExpression(node.Children[2])
+                : TreeTraversal(node.Children[2]).Trim();
+                string body = TreeTraversal(node.Children[3]);
 
             // Rust does not have a C-style for loop,
             // so we translate it into initialization + while loop.

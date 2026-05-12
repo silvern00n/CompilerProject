@@ -2,6 +2,7 @@
 using CompilerProject.Models.DataStructures;
 using CompilerProject.Views;
 using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace CompilerProject.Controllers
@@ -36,7 +37,7 @@ namespace CompilerProject.Controllers
                 }
 
                 // Stage 2 — get optional output folder path
-                string outputDirectory = _view.GetOutputDirectory();
+                string outputDirectory = _view.GetOutputDirectory();    
 
                 // Stage 3 — run the compiler
                 _view.ShowStatus("Starting compilation process...");
