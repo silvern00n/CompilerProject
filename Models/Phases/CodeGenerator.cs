@@ -168,7 +168,7 @@ namespace CompilerProject.Models.Phases
             string name = node.Children[0].Value;
             string value = TreeTraversal(node.Children[1]);
 
-            return Indent() + $"{name} = {value};\n";
+            return Indent() + $"{name} = {value}";
         }
 
         // Translates if statement
@@ -230,29 +230,39 @@ namespace CompilerProject.Models.Phases
                 return "";
             }
 
-            string init = TreeTraversal(node.Children[0]).Trim();
-            string condition = TreeTraversal(node.Children[1]).Trim();
-            string step = node.Children[2].NodeType == ASTNodeType.Assignment
-                ? GenerateAssignmentExpression(node.Children[2])
-                : TreeTraversal(node.Children[2]).Trim();
-                string body = TreeTraversal(node.Children[3]);
+            string init = TreeTraversal(node.Children[0]);
+            string condition = TreeTraversal(node.Children[1]);
+            ASTNode stepNode = node.Children[2];
+            ASTNode bodyNode = node.Children[3];
 
-            // Rust does not have a C-style for loop,
-            // so we translate it into initialization + while loop.
-            string code = Indent() + init + "\n";
+            string code = init;
             code += Indent() + $"while {condition} {{\n";
 
             _indentLevel++;
 
-            code += body;
-
-            if (step.EndsWith(";"))
+            // bodyNode is a Block node, but we do NOT want GenerateBlock()
+            // because GenerateBlock() adds another pair of { }.
+            foreach (ASTNode statement in bodyNode.Children)
             {
-                code += Indent() + step + "\n";
+                code += TreeTraversal(statement);
+            }
+
+            if (stepNode.NodeType == ASTNodeType.Assignment)
+            {
+                code += Indent() + GenerateAssignmentExpression(stepNode) + ";\n";
             }
             else
             {
-                code += Indent() + step + ";\n";
+                string step = TreeTraversal(stepNode).Trim();
+
+                if (step.EndsWith(";"))
+                {
+                    code += Indent() + step + "\n";
+                }
+                else
+                {
+                    code += Indent() + step + ";\n";
+                }
             }
 
             _indentLevel--;
