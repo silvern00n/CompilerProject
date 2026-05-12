@@ -50,7 +50,7 @@ namespace CompilerProject.Controllers
                 if (result == 0)
                 {
                     _view.ShowSuccess("Compilation finished successfully.");
-                    _view.ShowOutputPath(_model.GetOutputPath());
+                    _model.PrintBothFiles(inputPath, outputDirectory);
 
                     if (errors.Count > 0)
                     {

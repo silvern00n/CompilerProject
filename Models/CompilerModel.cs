@@ -185,5 +185,9 @@ namespace CompilerProject.Models
         {
             return _symbolTable;
         }
+        public void PrintBothFiles(string inputFilePath, string outputDirectory)
+        {
+            _fileManager.PrintBothFiles(inputFilePath, outputDirectory);
+        }
     }
 }

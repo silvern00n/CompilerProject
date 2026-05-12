@@ -71,21 +71,36 @@ namespace CompilerProject.Models.Helpers
             return BuildOutputPath(inputFilePath, outputDirectory);
         }
 
-        public void PrintOutputFile(string inputFilePath, string outputDirectory)
+        public void PrintBothFiles(string inputFilePath, string outputDirectory)
         {
             string outputPath = BuildOutputPath(inputFilePath, outputDirectory);
 
-            if (!File.Exists(outputPath))
+            if (!File.Exists(inputFilePath))
             {
-                Console.WriteLine("Output file was not found.");
+                Console.WriteLine("Input JavaScript file was not found.");
                 return;
             }
 
-            string content = File.ReadAllText(outputPath);
+            if (!File.Exists(outputPath))
+            {
+                Console.WriteLine("Output Rust file was not found.");
+                return;
+            }
 
-            Console.WriteLine("----- Generated Rust Code -----");
-            Console.WriteLine(content);
-            Console.WriteLine("----- End Of Generated Code -----");
+            string jsContent = File.ReadAllText(inputFilePath);
+            string rustContent = File.ReadAllText(outputPath);
+
+            Console.WriteLine();
+            Console.WriteLine("════════════ JavaScript Source ════════════\n");
+            Console.WriteLine(jsContent);
+
+            Console.WriteLine("\n════════════ Generated Rust Code ════════════\n");
+            Console.WriteLine(rustContent);
+
+            Console.WriteLine("════════════ Output File Path ════════════");
+            Console.WriteLine(outputPath);
+            Console.WriteLine();
+            return;
         }
     }
 }
