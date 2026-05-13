@@ -19,7 +19,7 @@ namespace CompilerProject.Models.Phases
             _current = 0;
         }
 
-        // Main syntax analysis function
+        // Main syntax analysis function - top down from root to leaves
         public ASTNode Analyze(List<Token> tokens, List<ErrorModel> errors)
         {
             _tokens = tokens;
