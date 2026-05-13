@@ -12,7 +12,7 @@ namespace CompilerProject.Views
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("╔══════════════════════════════════════╗");
+            Console.WriteLine("\n╔══════════════════════════════════════╗");
             Console.WriteLine("║   JavaScript to Rust Compiler        ║");
             Console.WriteLine("║   Final Project - Tomer Lupo         ║");
             Console.WriteLine("╚══════════════════════════════════════╝");
@@ -107,6 +107,15 @@ namespace CompilerProject.Views
             Console.ResetColor();
 
             return Console.ReadLine()?.Trim() ?? "";
+        }
+
+        public void showGoodbyeMessage()
+        {
+            Console.WriteLine("\n══════════════════════════════════════");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("\nThank you for using me\nHave a nice day!\nGoodbye\n\n");
+            Console.ResetColor();
+            return;
         }
     }
 }

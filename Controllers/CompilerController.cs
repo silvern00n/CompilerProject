@@ -71,7 +71,8 @@ namespace CompilerProject.Controllers
                     Console.Clear();
                 }
             }
-            Console.WriteLine("Have a nice day!");
+
+            _view.showGoodbyeMessage();
 
             return 0;
         }
