@@ -61,6 +61,7 @@ namespace CompilerProject.Models
             _errors.Clear();
             _tokens.Clear();
             _symbolTable.Clear();
+            _errorHandler.ResetErrorCheck();
             _outputCode = "";
 
 

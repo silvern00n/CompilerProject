@@ -8,6 +8,7 @@ namespace CompilerProject.Models.Helpers
     {
         // Error dictionary — maps an error code to a clear error message
         private Dictionary<string, string> _errorMessages;
+        private int _lastCheckedErrorIndex = 0;
 
         public ErrorHandler()
         {
@@ -54,15 +55,22 @@ namespace CompilerProject.Models.Helpers
         // Returns 1 if there is a critical error, otherwise returns 0
         public int CheckErrors(List<ErrorModel> errors)
         {
-            foreach (ErrorModel error in errors)
+            for (int i = _lastCheckedErrorIndex; i < errors.Count; i++)
             {
-                if (error.Severity == ErrorSeverity.Critical)
+                if (errors[i].Severity == ErrorSeverity.Critical)
                 {
+                    _lastCheckedErrorIndex = errors.Count;
                     return 1;
                 }
             }
 
+            _lastCheckedErrorIndex = errors.Count;
             return 0;
+        }
+
+        public void ResetErrorCheck()
+        {
+            _lastCheckedErrorIndex = 0;
         }
 
         public void PrintErrors(List<ErrorModel> errors)
